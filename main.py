@@ -3,6 +3,7 @@ from discord import Embed, Color, Member
 from discord.utils import get
 from asyncio import sleep
 from configparser import ConfigParser
+from os import getenv
 
 from simon import Simon
 from helpers import gen_embed, get_role
@@ -72,5 +73,5 @@ async def on_raw_reaction_remove(payload):
     await get(bot.guilds[0].channels, name=config["Channels"]["ReactionLog"]).send(f"<@{payload.user_id}> removed the reaction {payload.emoji} on this message: <{message.jump_url}>.")
 
 bot.add_cog(Simon(bot))
-bot.run(config["Bot"]["Key"])
+bot.run(getenv("SIMON_BOT_KEY"))
 
