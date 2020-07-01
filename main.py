@@ -70,7 +70,7 @@ async def on_ready():
 async def on_raw_reaction_remove(payload):
     channel = bot.get_channel(payload.channel_id)
     message = await channel.fetch_message(payload.message_id)
-    await get(bot.guilds[0].channels, name=config["Channels"]["ReactionLog"]).send(f"<@{payload.user_id}> removed the reaction {payload.emoji} on this message: <{message.jump_url}>.")
+    await get(channel.guild.channels, name=config["Channels"]["ReactionLog"]).send(f"<@{payload.user_id}> removed the reaction {payload.emoji} on this message: <{message.jump_url}>.")
 
 bot.add_cog(Simon(bot))
 bot.run(getenv("SIMON_BOT_KEY"))
